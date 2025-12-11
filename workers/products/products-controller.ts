@@ -1,9 +1,12 @@
 import { Hono } from "hono";
 import * as productService from "./product-service";
+import type { Bindings } from "workers/bindings";
 
-const productsApiRoutes = new Hono()
+const productsApiRoutes = new Hono<{ Bindings: Bindings }>()
     .get("/", (c) => c.text("Products API Get Endpoint"))
     .get(":id", (c) => {
+
+        console.log(c.env.D1DB.exec("SELECT * FROM products"));
         const productId = c.req.param("id");
         const product = productService.getById(productId);
         return c.json(product);

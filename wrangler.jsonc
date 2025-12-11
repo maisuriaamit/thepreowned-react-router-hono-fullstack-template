@@ -43,5 +43,13 @@
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
 	 */
 	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
-	"upload_source_maps": true
+	"upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "D1DB",
+			"database_name": "prod-d1-products",
+			"database_id": "22d541b2-84d1-48ba-a877-8b2569aeee62",
+			"remote": true
+		}
+	]
 }

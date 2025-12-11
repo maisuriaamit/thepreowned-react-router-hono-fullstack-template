@@ -1,8 +1,9 @@
 import { Hono } from "hono";
 import { createRequestHandler } from "react-router";
 import api from "./api";
+import type { Bindings } from "./bindings";
 
-const app = new Hono();
+const app = new Hono<{ Bindings: Bindings }>();
 
 app.route("/api", api);
 

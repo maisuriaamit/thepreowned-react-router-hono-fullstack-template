@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 import productsApiRoutes from "./products/products-controller";
+import type { Bindings } from "./bindings";
 
-const api = new Hono();
+const api = new Hono<{ Bindings: Bindings }>();
 
 api.route("/products", productsApiRoutes);
 
