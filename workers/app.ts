@@ -1,9 +1,13 @@
 import { Hono } from "hono";
 import { createRequestHandler } from "react-router";
+import api from "./api";
 
 const app = new Hono();
 
+app.route("/api", api);
+
 // Add more routes here
+//app.get("/", (c) => c.text("Hello from Hono with React Router!"));
 
 app.get("*", (c) => {
 	const requestHandler = createRequestHandler(
