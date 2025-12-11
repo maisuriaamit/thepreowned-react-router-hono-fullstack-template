@@ -4,7 +4,7 @@ import type { Bindings } from "workers/bindings";
 
 const productsApiRoutes = new Hono<{ Bindings: Bindings }>()
     .get("/", async (c) => {
-        const products = await c.env.D1DB.prepare("SELECT * FROM products").all();
+        const products = (await c.env.D1DB.prepare("SELECT * FROM products").all()).results;
         return c.json(products);
 
     })
