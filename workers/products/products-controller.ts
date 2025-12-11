@@ -4,13 +4,13 @@ import type { Bindings } from "workers/bindings";
 
 const productsApiRoutes = new Hono<{ Bindings: Bindings }>()
     .get("/", async (c) => {
-        const products = await c.env.D1DB.exec("SELECT * FROM products");
+        const products = await c.env.D1DB.prepare("SELECT * FROM products").all();
         return c.json(products);
 
     })
     .get(":id", (c) => {
 
-        console.log(c.env.D1DB.exec("SELECT * FROM products"));
+        console.log(c.env.D1DB.prepare("SELECT * FROM products").all());
         const productId = c.req.param("id");
         const product = productService.getById(productId);
         return c.json(product);
